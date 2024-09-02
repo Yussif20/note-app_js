@@ -1,4 +1,4 @@
-import { App } from "./elements";
+import { addNoteButton, addNotePage, App, notesButton, NotesPage } from "./elements";
 
 export const fetchData = (key) =>{
     const data = localStorage.getItem(key);
@@ -13,6 +13,18 @@ const saveToDB = (key,data)=>{
 export const themeTogglerHandler = ()=>{
     App.classList.toggle("app--isDark");
     saveToDB("darkThemeFlag" , App.classList.contains("app--isDark"))
+}
+export const showAddNotesHandler =()=>{
+    notesButton.classList.remove("active");
+    addNoteButton.classList.add("active");
+    NotesPage.classList.remove("active");
+    addNotePage.classList.add("active");
+}
+export const showNotesHandler =()=>{
+    addNoteButton.classList.remove("active");
+    notesButton.classList.add("active");
+    addNotePage.classList.remove("active");
+    NotesPage.classList.add("active");
 }
 // export const renderChosenTasks =(tasks)=>{
 //     const activeTasks = tasks.filter((item)=>item.isCompleted === false);

@@ -1,9 +1,11 @@
-import {  themeToggler} from "./elements";
-import { themeTogglerHandler } from "./utils";
+import {  themeToggler,notesButton,addNoteButton} from "./elements";
+import { showAddNotesHandler, showNotesHandler, themeTogglerHandler } from "./utils";
 
 
 export const initListeners = () => {
     themeToggler.addEventListener("click", themeTogglerHandler);
+    addNoteButton.addEventListener("click",showAddNotesHandler);
+    notesButton.addEventListener("click",showNotesHandler)
 
     // formButton.addEventListener("click", addTask);
     // window.addEventListener("keypress", (e) => {

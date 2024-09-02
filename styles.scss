@@ -91,10 +91,10 @@ button {
     margin-top: 1rem;
     line-height: 1.7rem;
     text-align: left;
-    color: var(--color-font-primary);
+    color: var(--color-font-secondary);
     transition: 0.3s ease;
     &.active {
-      font-weight: bold;
+      color: var(--color-font-primary);
       border-left: 3px solid var(--color-light-orange);
     }
     &:hover {
@@ -103,6 +103,7 @@ button {
   }
 }
 .add-note {
+  display: none;
   height: 100%;
   background-color: var(--color-bg-secondary);
   margin: auto 0;
@@ -120,8 +121,9 @@ button {
     }
     input,
     textarea {
-      width: 60%;
-      padding: 0.8rem;
+      color: var(--color-font-primary);
+      width: 65%;
+      padding: 1.2rem;
       background-color: var(--color-bg-primary);
       border-radius: 0.6rem;
     }
@@ -134,10 +136,11 @@ button {
     display: flex;
     gap: 2rem;
     button {
+      line-height: 1.5;
       font-weight: bold;
       padding: 0.8rem 1.8rem;
       background-color: var(--color-light-orange);
-      color: var(--color-bg-secondary);
+      color: var(--color-bg-primary);
       border-radius: 0.8rem;
       transition: 0.3s ease;
       &:hover {
@@ -145,10 +148,16 @@ button {
       }
     }
   }
+  &.active {
+    display: block;
+  }
 }
-.notes-list {
+.notes {
   display: none;
   background-color: var(--color-bg-secondary);
+  h1 {
+    color: var(--color-font-primary);
+  }
   &.active {
     display: block;
   }

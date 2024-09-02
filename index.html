@@ -24,12 +24,17 @@
           <img src="assets/icon-search.svg" alt="search icon" />
           <input type="text" placeholder="Search" />
         </div>
-        <button>Notes</button>
-        <button class="active">Add Notes</button>
+        <button class="notes-btn">Notes</button>
+        <button class="add-note-btn">Add Notes</button>
       </aside>
-      <aside class="notes-list">
-        <h1>Notes list</h1>
-      </aside>
+      <article class="notes">
+        <aside class="notes-list">
+          <h1>Notes list</h1>
+        </aside>
+        <!-- <div>
+        <h2>Notes Details</h2>
+        </div> -->
+      </article>
       <article class="add-note">
         <h1>Add Note</h1>
         <div class="add-note__input">
@@ -49,9 +54,6 @@
           <button>Add Pinned Note</button>
         </div>
       </article>
-      <!-- <article>
-        <h2>Notes Details</h2>
-      </article> -->
     </div>
     <script src="./index.js" type="module" defer></script>
   </body>
