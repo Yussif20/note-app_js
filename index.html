@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="icon" href="./assets/favicon.ico" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Note App</title>
+    <link rel="stylesheet" href="./styles.scss" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="notes-aside">
+        <button class="theme-toggler"></button>
+        <img class="logo" src="assets/Logo.svg" alt="app logo" />
+        <div class="search-input">
+          <img src="assets/icon-search.svg" alt="search icon" />
+          <input type="text" placeholder="Search" />
+        </div>
+        <button>Notes</button>
+        <button class="active">Add Notes</button>
+      </aside>
+      <aside class="notes-list">
+        <h1>Notes list</h1>
+      </aside>
+      <article class="add-note">
+        <h1>Add Note</h1>
+        <div class="add-note__input">
+          <label for="title">Title*</label>
+          <input type="text" id="title" />
+        </div>
+        <div class="add-note__input">
+          <label for="author">Author*</label>
+          <input type="text" id="author" />
+        </div>
+        <div class="add-note__input">
+          <label for="note">Your note*</label>
+          <textarea name="Your note" id="note"></textarea>
+        </div>
+        <div class="add-note__buttons">
+          <button>Add Note</button>
+          <button>Add Pinned Note</button>
+        </div>
+      </article>
+      <!-- <article>
+        <h2>Notes Details</h2>
+      </article> -->
+    </div>
+    <script src="./index.js" type="module" defer></script>
+  </body>
+</html>
