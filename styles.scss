@@ -5,7 +5,7 @@
   --color-bg-primary: #e7e7e9;
   --color-bg-secondary: #f6f6f6;
   --color-light-orange: #ec7160;
-  --color-font-primary: #303030;
+  --color-font-primary: #ca9090;
   --color-font-secondary: #898989;
 }
 .app--isDark {
@@ -143,9 +143,6 @@ button {
       color: var(--color-bg-primary);
       border-radius: 0.8rem;
       transition: 0.3s ease;
-      &:hover {
-        background-color: red;
-      }
     }
   }
   &.active {
@@ -155,8 +152,35 @@ button {
 .notes {
   display: none;
   background-color: var(--color-bg-secondary);
-  h1 {
-    color: var(--color-font-primary);
+  .notes-list {
+    height: 100%;
+    max-width: 30%;
+    padding: 2rem;
+    border-right: 2px solid var(--color-bg-primary);
+    h3 {
+      font-weight: 400;
+      color: var(--color-light-orange);
+    }
+    .note {
+      h4 {
+        color: var(--color-font-primary);
+        font-size: 2rem;
+        margin-bottom: -0.5rem;
+      }
+      p {
+        font-size: 1.4rem;
+        color: var(--color-font-secondary);
+      }
+      &__footer {
+        margin-top: -1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        button {
+          color: var(--color-light-orange);
+        }
+      }
+    }
   }
   &.active {
     display: block;

@@ -1,44 +1,25 @@
-import {  themeToggler,notesButton,addNoteButton} from "./elements";
-import { showAddNotesHandler, showNotesHandler, themeTogglerHandler } from "./utils";
+import {  themeToggler,notesButton,addNoteButton, addNote, addPinnedNote, deleteButton} from "./elements";
+import {  addNotesHandler, addPinnedNotesHandler, deleteNote, showAddNotesPage, showNotesPage, themeTogglerHandler } from "./utils";
 
 
 export const initListeners = () => {
     themeToggler.addEventListener("click", themeTogglerHandler);
-    addNoteButton.addEventListener("click",showAddNotesHandler);
-    notesButton.addEventListener("click",showNotesHandler)
-
-    // formButton.addEventListener("click", addTask);
-    // window.addEventListener("keypress", (e) => {
-    //     if (e.key === "Enter") {
-    //         formButton.click();
-    //     }
-    // });
+    addNoteButton.addEventListener("click",showAddNotesPage);
+    notesButton.addEventListener("click",showNotesPage);
+    addNote.addEventListener("click",(e)=>{
+        addNotesHandler(e);
+    })
+    addPinnedNote.addEventListener("click",(e)=>{
+        addPinnedNotesHandler(e);
+    })
 }
 
-// export const initTaskListeners = () => {
-//     checkButtons().forEach((btn) => {
-//         btn.addEventListener("click", (e) => {
-//             const taskId = parseInt(e.currentTarget.parentElement.id.replace('item', ''));
-//             checkTask(e, taskId);
-//         });
-//     });
+export const initTaskListeners = () => {
+    deleteButton().forEach((btn)=>{
+        btn.addEventListener("click",(e)=>{
+            const taskId = parseInt(e.currentTarget.parentElement.parentElement.id);
+            deleteNote(e,taskId)
+        })
+    })
+};
 
-//     deleteButtons().forEach((btn) => {
-//         btn.addEventListener("click", (e) => {
-//             const taskId = parseInt(e.currentTarget.parentElement.id.replace('item', ''));
-//             deleteTask(e, taskId);
-//         });
-//     });
-
-//     clearButton.addEventListener("click", deleteAllTasks);
-// }
-
-// footerButtons().forEach((btn) => {
-//     btn.addEventListener("click", () => {
-//         footerButtons().forEach((button) => button.classList.remove("active"));
-//         btn.classList.add("active");
-//         const tasks = fetchData("tasks");
-//         renderChosenTasks(tasks);
-//         initTaskListeners();
-//     });
-// });

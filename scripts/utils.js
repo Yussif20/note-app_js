@@ -1,4 +1,4 @@
-import { addNoteButton, addNotePage, App, notesButton, NotesPage } from "./elements";
+import { addNoteButton, addNotePage, App, authorInput, normalNotesContainer, noteInput, notesButton, NotesPage, pinnedNotesContainer, titleInput } from "./elements";
 
 export const fetchData = (key) =>{
     const data = localStorage.getItem(key);
@@ -9,104 +9,107 @@ const saveToDB = (key,data)=>{
     localStorage.setItem(key,JSON.stringify(data))
 }
 
-
 export const themeTogglerHandler = ()=>{
     App.classList.toggle("app--isDark");
     saveToDB("darkThemeFlag" , App.classList.contains("app--isDark"))
 }
-export const showAddNotesHandler =()=>{
+export const showAddNotesPage =()=>{
+    NotesPage.classList.remove("active");
     notesButton.classList.remove("active");
     addNoteButton.classList.add("active");
-    NotesPage.classList.remove("active");
     addNotePage.classList.add("active");
+    saveToDB("showingAddNotes" , addNoteButton.classList.contains("active"))
+    saveToDB("showingNotes" , notesButton.classList.contains("active"))
 }
-export const showNotesHandler =()=>{
+export const showNotesPage =()=>{
     addNoteButton.classList.remove("active");
-    notesButton.classList.add("active");
     addNotePage.classList.remove("active");
+    notesButton.classList.add("active");
     NotesPage.classList.add("active");
+    saveToDB("showingNotes" , notesButton.classList.contains("active"))
+    saveToDB("showingAddNotes" , addNoteButton.classList.contains("active"))
 }
-// export const renderChosenTasks =(tasks)=>{
-//     const activeTasks = tasks.filter((item)=>item.isCompleted === false);
-//     const completedTasks = tasks.filter((item)=>item.isCompleted === true);
 
-//     allItemsBtn.classList.contains("active") &&renderTasks(tasks);
-//     activeItemsBtn.classList.contains("active") && renderTasks(activeTasks);
-//     completedItemsBtn.classList.contains("active") && renderTasks(completedTasks);
-//     todoCount.textContent = activeTasks.length;
-// }
-// const renderEmptyList = ()=>{
-//     tasksContainer.innerHTML = ` <p class="todo__tasks--empty">Please enter your tasks</p>`
-// }
-// const renderTasks = (tasks) => {
-//     let taskList = ``;
-//     tasks.forEach((task) => {
-//         let taskEl = `
-//         <li id="item${task.id}" class="todo__tasks--task ${task.isCompleted ? "checked" : ""}" draggable="true">
-//             <button class="task-btn" onclick="checkTask(event, ${task.id})"><img src="./assets/icon-check.svg" /></button>
-//             <p>${task.value}</p>
-//             <button class="task-close" onclick="deleteTask(event, ${task.id})"><img src="assets/icon-cross.svg" /></button>
-//         </li>`;
-//         taskList += taskEl;
-//     });
-//     tasksContainer.innerHTML = taskList;
-//     textInput.value = '';
-// };
+const addNote =()=>{
+     const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+
+    const formattedDate = `${year}-${month}-${day}`;
+    const note = {
+        id:Date.now(),
+        title : titleInput.value,
+        author : authorInput.value,
+        noteInfo : noteInput.value,
+        date : formattedDate,
+        isPinned :false,  
+    }
+    titleInput.value = '';
+    authorInput.value = '';
+    noteInput.value = '';
+    return note;
+}
+const initNotes = () =>{
+    const notes = fetchData("notes") || [];
+    const pinnedNotes = fetchData("pinned-notes") || [];
+    pinnedNotesContainer.innerHTML = renderNotes(pinnedNotes);
+    normalNotesContainer.innerHTML = renderNotes(notes);
+}
+export const addNotesHandler = (e)=>{
+    e.preventDefault(); 
+    if(!titleInput.value||!authorInput.value||!noteInput.value)return;
+    const notes = fetchData("notes") || [];
+    notes.push(addNote());
+    saveToDB("notes",notes);
+    initNotes();
+}
+export const addPinnedNotesHandler = (e)=>{
+    e.preventDefault(); 
+    if(!titleInput.value||!authorInput.value||!noteInput.value)return;
+    const pinnedNotes = fetchData("pinned-notes") || [];
+    pinnedNotes.push(addNote());
+    saveToDB("pinned-notes",pinnedNotes);
+    initNotes();
+}
+
+const renderNotes = (notes) => {
+    let notesList = ``;
+    notes.forEach((note) => {
+        let noteEl = ` <div id="${note.id}" class="note ${note.isPinned ? "pinned" : ""}">
+              <h4>${note.title}</h4>
+              <p>
+               ${note.noteInfo}
+              </p>
+              <div class="note__footer">
+                <p class="date">${note.date}</p>
+                <button class="delete-btn">Delete</button>
+              </div>
+            </div>`
+        notesList += noteEl;
+    });
+    return notesList
+};
 
 
-// const initTasks =(tasks)=>{
-//     if(tasks.length){
-//         renderChosenTasks(tasks);
-//         todoFooter.classList.add("active");
-//         initTaskListeners();
-//     }else{
-//         todoFooter.classList.remove("active");
-//         renderEmptyList();
-//     }
-// }
+export const deleteNote = (e, id) => {
+    e.preventDefault();
+    let notes = fetchData("notes");
+    notes = notes.filter(note => note.id !== id);
+    saveToDB("notes", notes);
+    initNotes();
+}
+export const deletePinnedNote = (e, id) => {
+    let pinnedNotes = fetchData("pinned-notes");
+    pinnedNotes = pinnedNotes.filter(note => note.id !== id);
+    saveToDB("pinned-notes", pinnedNotes);
+    initNotes();
+}
 
-// export const addTask = (e) => {
-//     e.preventDefault();
-//     let taskValue = textInput.value;
-//     if (!taskValue || !taskValue.split(" ").join("")) return;
-    
-//     const task = {
-//         id: Date.now(),  
-//         value: taskValue,
-//         isCompleted: false,
-//     };
-    
-//     const tasks = fetchData("tasks") || [];
-//     tasks.push(task);
-//     saveToDB("tasks", tasks);
-//     initTasks(tasks);
-// }
-
-// export const checkTask = (e, id) => {
-//     e.currentTarget.parentElement.classList.toggle("checked");
-//     const tasks = fetchData("tasks");
-//     const taskIndex = tasks.findIndex(task => task.id === id);
-//     if (taskIndex !== -1) {
-//         tasks[taskIndex].isCompleted = !tasks[taskIndex].isCompleted;
-//         initTasks(tasks);
-//         saveToDB("tasks", tasks);
-//     }
-// }
-
-// export const deleteTask = (e, id) => {
-//     let tasks = fetchData("tasks");
-//     tasks = tasks.filter(task => task.id !== id);
-//     initTasks(tasks);
-//     saveToDB("tasks", tasks);
-// }
-
-// export const deleteAllTasks =()=>{
-//     const tasks = fetchData("tasks").filter((item)=> item.isCompleted === false);
-//     saveToDB("tasks",tasks);
-//     initTasks(tasks)
-// }
 
 export const initDataOnStartup =()=>{
     fetchData("darkThemeFlag") && themeTogglerHandler();
-    // initTasks(fetchData("tasks"));
+    fetchData("showingAddNotes") &&  showAddNotesPage() ;
+    fetchData("showingNotes") && showNotesPage() ;
+    initNotes();
 }

@@ -29,7 +29,10 @@
       </aside>
       <article class="notes">
         <aside class="notes-list">
-          <h1>Notes list</h1>
+          <h3>Pinned</h3>
+          <div class="pinned-notes"></div>
+          <h3>Notes</h3>
+          <div class="normal-notes"></div>
         </aside>
         <!-- <div>
         <h2>Notes Details</h2>
@@ -39,19 +42,19 @@
         <h1>Add Note</h1>
         <div class="add-note__input">
           <label for="title">Title*</label>
-          <input type="text" id="title" />
+          <input class="title-input" type="text" id="title" />
         </div>
         <div class="add-note__input">
           <label for="author">Author*</label>
-          <input type="text" id="author" />
+          <input class="author-input" type="text" id="author" />
         </div>
         <div class="add-note__input">
           <label for="note">Your note*</label>
-          <textarea name="Your note" id="note"></textarea>
+          <textarea class="note-input" name="Your note" id="note"></textarea>
         </div>
         <div class="add-note__buttons">
-          <button>Add Note</button>
-          <button>Add Pinned Note</button>
+          <button class="add-note-button">Add Note</button>
+          <button class="add-pinned-note-button">Add Pinned Note</button>
         </div>
       </article>
     </div>
