@@ -1,5 +1,5 @@
-import {  themeToggler,notesButton,addNoteButton, addNote, addPinnedNote, deleteButton} from "./elements";
-import {  addNotesHandler, deleteNote, showAddNotesPage, showNotesPage, themeTogglerHandler } from "./utils";
+import {  themeToggler,notesButton,addNoteButton, addNote, addPinnedNote, deleteButton, notes} from "./elements";
+import {  addNotesHandler, chooseNote, deleteNote, showAddNotesPage, showNotesPage, themeTogglerHandler } from "./utils";
 
 
 export const initListeners = () => {
@@ -17,8 +17,14 @@ export const initListeners = () => {
 export const initTaskListeners = () => {
     deleteButton().forEach((btn)=>{
         btn.addEventListener("click",(e)=>{
-            const taskId = parseInt(e.currentTarget.parentElement.parentElement.id);
-            deleteNote(e,taskId)
+            const noteId = parseInt(e.currentTarget.parentElement.parentElement.id);
+            deleteNote(e,noteId)
+        })
+    })
+    notes().forEach((note)=>{
+        note.addEventListener("click",(e)=>{
+            const noteId = parseInt(e.currentTarget.parentElement.id);
+            chooseNote(e,noteId)
         })
     })
 };

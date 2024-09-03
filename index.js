@@ -19,5 +19,12 @@ initTaskListeners();
 
 //TODO show the notes 'short version' at the notes bar with option to delete them once the notes button is clicked ✅
 
+
 //TODO if the user clicked a task show its info
+
+//TODO add the plus button
+
+//TODO make the website responsive
+
+//TODO add the search functionality
 

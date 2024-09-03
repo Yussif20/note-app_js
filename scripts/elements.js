@@ -12,3 +12,5 @@ export const addPinnedNote = document.querySelector(".add-pinned-note-button");
 export const normalNotesContainer = document.querySelector(".normal-notes");
 export const pinnedNotesContainer = document.querySelector(".pinned-notes");
 export const deleteButton = () => document.querySelectorAll(".delete-btn");
+export const noteDetailsPage = document.querySelector(".note-details");
+export const notes =()=> document.querySelectorAll(".note-main")

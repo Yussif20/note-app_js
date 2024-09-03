@@ -1,4 +1,4 @@
-import { addNoteButton, addNotePage, App, authorInput, normalNotesContainer, noteInput, notesButton, NotesPage, pinnedNotesContainer, titleInput } from "./elements";
+import { addNoteButton, addNotePage, App, authorInput, normalNotesContainer, noteDetailsPage, noteInput, notesButton, NotesPage, pinnedNotesContainer, titleInput } from "./elements";
 import { initTaskListeners } from "./eventListeners";
 
 export const fetchData = (key) =>{
@@ -72,11 +72,14 @@ export const addNotesHandler = (e,isPinned)=>{
 const renderNotes = (notes) => {
     let notesList = ``;
     notes.forEach((note) => {
-        let noteEl = ` <div id="${note.id}" class="note ${note.isPinned ? "pinned" : ""}">
-              <h4>${note.title}</h4>
+        let noteEl = ` 
+        <div id="${note.id}" class="note">
+              <div class="note-main">
+                <h4>${note.title}</h4>
               <p>
                ${note.noteInfo}
               </p>
+              </div>
               <div class="note__footer">
                 <p class="date">${note.date}</p>
                 <button class="delete-btn">Delete</button>
@@ -86,6 +89,16 @@ const renderNotes = (notes) => {
     });
     return notesList
 };
+const renderNoteDetails = (note) =>{
+    let noteEl = `
+          <h2>${note.title}</h2>
+          <span>${note.date}</span>
+          <p>
+           ${note.noteInfo}
+          </p>
+    `
+    noteDetailsPage.innerHTML = noteEl;
+}
 
 
 export const deleteNote = (e, id) => {
@@ -93,6 +106,11 @@ export const deleteNote = (e, id) => {
     notes = notes.filter(note => note.id !== id);
     saveToDB("notes", notes);
     initNotes();
+}
+export const chooseNote = (e, id) => {
+    let notes = fetchData("notes") || [];
+    let note = notes.find(note => note.id === id);
+   renderNoteDetails(note);
 }
 
 

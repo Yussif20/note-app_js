@@ -10,7 +10,7 @@
 }
 .app--isDark {
   --icon-theme: url("./assets/icon-sun.svg");
-  --color-bg-primary: hsl(235, 21%, 11%);
+  --color-bg-primary: #2b2d42;
   --color-bg-secondary: hsl(235, 24%, 19%);
   --color-font-primary: #fff;
   --color-font-secondary: #adadb0;
@@ -154,10 +154,11 @@ button {
   background-color: var(--color-bg-secondary);
   .notes-list {
     height: 100%;
-    max-width: 30%;
+    width: 30%;
     padding: 2rem 0;
     border-right: 2px solid var(--color-bg-primary);
     h3 {
+      text-align: center;
       width: 100%;
       font-weight: 400;
       color: var(--color-light-orange);
@@ -195,7 +196,15 @@ button {
       }
     }
   }
+  .note-details {
+    padding: 5rem 3rem;
+    width: 70%;
+    color: var(--color-font-primary);
+    span {
+      color: var(--color-font-secondary);
+    }
+  }
   &.active {
-    display: block;
+    display: flex;
   }
 }
