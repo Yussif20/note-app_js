@@ -1,10 +1,11 @@
-import {  themeToggler,notesButton,addNoteButton, addNote, addPinnedNote, deleteButton, notes} from "./elements";
+import {  themeToggler,notesButton,addNoteButton, addNote, addPinnedNote, deleteButton, notes, plusButton} from "./elements";
 import {  addNotesHandler, chooseNote, deleteNote, showAddNotesPage, showNotesPage, themeTogglerHandler } from "./utils";
 
 
 export const initListeners = () => {
     themeToggler.addEventListener("click", themeTogglerHandler);
     addNoteButton.addEventListener("click",showAddNotesPage);
+    plusButton.addEventListener("click",showAddNotesPage);
     notesButton.addEventListener("click",showNotesPage);
     addNote.addEventListener("click",(e)=>{
         addNotesHandler(e,false);
