@@ -1,4 +1,5 @@
 import { addNoteButton, addNotePage, App, authorInput, normalNotesContainer, noteInput, notesButton, NotesPage, pinnedNotesContainer, titleInput } from "./elements";
+import { initTaskListeners } from "./eventListeners";
 
 export const fetchData = (key) =>{
     const data = localStorage.getItem(key);
@@ -30,7 +31,7 @@ export const showNotesPage =()=>{
     saveToDB("showingAddNotes" , addNoteButton.classList.contains("active"))
 }
 
-const addNote =()=>{
+const addNote =(isPinned = false)=>{
      const today = new Date();
     const year = today.getFullYear();
     const month = String(today.getMonth() + 1).padStart(2, '0');
@@ -43,7 +44,7 @@ const addNote =()=>{
         author : authorInput.value,
         noteInfo : noteInput.value,
         date : formattedDate,
-        isPinned :false,  
+        isPinned :isPinned,  
     }
     titleInput.value = '';
     authorInput.value = '';
@@ -52,24 +53,19 @@ const addNote =()=>{
 }
 const initNotes = () =>{
     const notes = fetchData("notes") || [];
-    const pinnedNotes = fetchData("pinned-notes") || [];
+    console.log(notes)
+    const normalNotes = notes.filter(note => note.isPinned === false)
+    const pinnedNotes = notes.filter(note => note.isPinned === true) 
+    normalNotesContainer.innerHTML = renderNotes(normalNotes);
     pinnedNotesContainer.innerHTML = renderNotes(pinnedNotes);
-    normalNotesContainer.innerHTML = renderNotes(notes);
+    initTaskListeners();
 }
-export const addNotesHandler = (e)=>{
+export const addNotesHandler = (e,isPinned)=>{
     e.preventDefault(); 
     if(!titleInput.value||!authorInput.value||!noteInput.value)return;
     const notes = fetchData("notes") || [];
-    notes.push(addNote());
+    notes.push(addNote(isPinned));
     saveToDB("notes",notes);
-    initNotes();
-}
-export const addPinnedNotesHandler = (e)=>{
-    e.preventDefault(); 
-    if(!titleInput.value||!authorInput.value||!noteInput.value)return;
-    const pinnedNotes = fetchData("pinned-notes") || [];
-    pinnedNotes.push(addNote());
-    saveToDB("pinned-notes",pinnedNotes);
     initNotes();
 }
 
@@ -93,16 +89,9 @@ const renderNotes = (notes) => {
 
 
 export const deleteNote = (e, id) => {
-    e.preventDefault();
-    let notes = fetchData("notes");
+    let notes = fetchData("notes") || [];
     notes = notes.filter(note => note.id !== id);
     saveToDB("notes", notes);
-    initNotes();
-}
-export const deletePinnedNote = (e, id) => {
-    let pinnedNotes = fetchData("pinned-notes");
-    pinnedNotes = pinnedNotes.filter(note => note.id !== id);
-    saveToDB("pinned-notes", pinnedNotes);
     initNotes();
 }
 

@@ -5,7 +5,7 @@
   --color-bg-primary: #e7e7e9;
   --color-bg-secondary: #f6f6f6;
   --color-light-orange: #ec7160;
-  --color-font-primary: #ca9090;
+  --color-font-primary: #303030;
   --color-font-secondary: #898989;
 }
 .app--isDark {
@@ -155,13 +155,23 @@ button {
   .notes-list {
     height: 100%;
     max-width: 30%;
-    padding: 2rem;
+    padding: 2rem 0;
     border-right: 2px solid var(--color-bg-primary);
     h3 {
+      width: 100%;
       font-weight: 400;
       color: var(--color-light-orange);
+      &.notes-header {
+        padding: 1rem 0;
+        border-top: 2px solid var(--color-bg-primary);
+        border-bottom: 2px solid var(--color-bg-primary);
+      }
     }
     .note {
+      cursor: pointer;
+      padding: 0.3rem 0.6rem;
+      border-radius: 0.8rem;
+      transition: 0.3s;
       h4 {
         color: var(--color-font-primary);
         font-size: 2rem;
@@ -179,6 +189,9 @@ button {
         button {
           color: var(--color-light-orange);
         }
+      }
+      &:hover {
+        background-color: var(--color-bg-primary);
       }
     }
   }
