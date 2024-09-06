@@ -1,75 +1,88 @@
-<!-- # Todo App
+# Notes App
 
-This is a simple and intuitive Todo App built with HTML, CSS, and JavaScript. The app allows users to manage their daily tasks efficiently, with features to add, check, delete, filter, and reorder tasks. The app supports both light and dark themes, ensuring a comfortable user experience.
+This is a fully responsive **Notes App** built using HTML, Sass, and JavaScript. The app allows users to create, pin, preview, delete, and search notes. Users can also switch between dark and light modes. All notes are saved in the browser's local storage, so they persist even after a page refresh.
 
 ## Features
 
-- **Add Tasks:** Users can easily add new tasks to their todo list.
-- **Mark as Completed:** Tasks can be marked as completed, and they will be visually distinguished with a strikethrough effect.
-- **Delete Tasks:** Users can delete individual tasks from their list.
-- **Task Filtering:**
-  - **All:** View all tasks.
-  - **Active:** View only tasks that are not completed.
-  - **Completed:** View only tasks that have been completed.
-- **Clear Completed Tasks:** Users can clear all completed tasks with a single click.
-- **Task Counter:** A dynamic counter shows the number of tasks left to do.
-- **Drag and Drop:** Tasks can be reordered by dragging and dropping them to a new position.
-- **Theme Toggle:** The app supports both light and dark themes, allowing users to switch according to their preference.
+- **Add Notes**: Users can create new notes and save them.
+- **Pinned Notes**: Important notes can be pinned to the top of the list for easy access.
+- **Delete Notes**: Users can delete notes if they are no longer needed.
+- **Note Preview**: Click on any note to view the full content.
+- **Search Notes**: Quickly find notes by typing in the search bar.
+- **Dark and Light Mode**: Switch between dark and light modes for a better visual experience.
+- **Local Storage**: All notes are stored in local storage, ensuring that notes are saved even after a page reload.
+- **Responsive Design**: The app is fully responsive and works seamlessly on all device sizes.
 
 ## Technologies Used
 
-- **HTML5:** For the structure of the app.
-- **CSS3:** For styling, including support for dark and light themes.
-- **JavaScript:** For the dynamic behavior of the app, such as adding, checking, deleting tasks, filtering tasks, and drag-and-drop functionality.
+- **HTML5**
+- **Sass (CSS Preprocessor)**
+- **JavaScript (ES6+)**
+- **Local Storage API**
+- **Node.js** and **NPM** for managing the development environment
 
-## Installation
+## How to Use
 
-To run the Todo App locally, follow these steps:
+### Running Locally
 
-1. **Clone the repository:**
+1. **Clone the Repository**:
 
    ```bash
-   git clone https://github.com/Yussif20/TODO-App.git
+   git clone https://github.com/Yussif20/note-app_js
    ```
 
-2. **Navigate to the project directory:**
+2. **Navigate to the Project Directory**:
+
    ```bash
-   cd TODO-App
+   cd note-app_js
    ```
-3. **Install dependencies:**
-   Make sure you have Node.js and npm installed. Then, install the necessary dependencies by running:
+
+3. **Install Dependencies**:
+
    ```bash
    npm install
    ```
-4. **Build the project:**
-   After installing the dependencies, build the project by running:
-   ```bash
-   npm run build
-   ```
-5. **Run the app:**
-   To start the app, you can use a development server by running:
+
+4. **Run the App**:
 
    ```bash
    npm run dev
    ```
 
-   Alternatively, you can serve the `dist` folder with a static server.
+5. Open the provided URL (usually `http://localhost:5173`) in your browser to view the app.
 
-6. **Open the app in your browser:**
-   The app should be running on `http://localhost:5173` or another port specified in your terminal.
+### Live Version
+
+You can also access the live version of the app without cloning the repository:
+[Live Notes App](https://your-live-app-url.com)
+
+## Features in Detail
+
+- **Adding Notes**:
+
+  - Click the "+" button at the bottom right of the screen or choose the add note tab.
+  - Enter a title,author and description for your note.
+  - Choose whether to add the note as a pinned or leave it as a normal note.
+
+- **Viewing Notes**:
+
+  - Notes are displayed with a short preview.
+  - Click on any note to view the full content on the right panel.
+
+- **Search Functionality**:
+
+  - Start typing in the search bar to filter notes by their title.
+
+- **Dark/Light Mode**:
+  - Switch between dark and light themes using the toggle at the top of the sidebar.
 
 ## Screenshots
 
-![Todo App](assets/screenshot.png)
-
-### Links
-
-- Repo URL: [github link](https://github.com/Yussif20/TODO-App)
-- Live Site URL: [live site url](https://todo-jss.netlify.app/)
+![Notes App Screenshot](./assets/screenshot.png)
 
 ## Author
 
 - Website - [Yusif Ayman](https://yussif20.github.io/main-portfolio/)
 - linkedin - [Yusif Ayman](https://www.linkedin.com/in/yussif-ayman/)
 - Github - [Yusif Ayman](https://github.com/Yussif20)
-- Frontend Mentor - [Yusif ayman](https://www.frontendmentor.io/profile/Yussif20) -->
+- Frontend Mentor - [Yusif ayman](https://www.frontendmentor.io/profile/Yussif20)
