@@ -22,3 +22,5 @@ export const notesAsideList = document.querySelector(".notes-list");
 export const mobileSearchButton = document.querySelector(".mobile-search-btn")
 export const mobileSearchIcon = document.querySelector(".mobile-search-icon")
 export const mobileNav = document.querySelector(".mobile-nav");
+export const searchInput = document.querySelectorAll('.search');
+export const notesElements =()=> document.querySelectorAll('.note');
