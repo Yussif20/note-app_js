@@ -74,7 +74,8 @@ button {
     padding: 1.6rem 0.8rem;
     background-color: var(--color-bg-secondary);
     @media (max-width: 900px) {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
       align-items: center;
       justify-content: space-between;
       .burger-menu {
@@ -92,8 +93,7 @@ button {
         background-size: contain;
       }
       .mobile-search-btn {
-        top: 15px;
-        left: 15px;
+        margin-left: auto;
         width: 30px;
         height: 30px;
         background: url("assets/icon-search.svg") no-repeat center;
@@ -101,9 +101,28 @@ button {
         z-index: 20;
         cursor: pointer;
       }
-      .mobile-search-btn.active {
-        background: url("assets/close.svg") no-repeat center;
-        background-size: contain;
+      .search-input {
+        display: none;
+      }
+      &.active {
+        background-color: var(--color-bg-primary);
+        .mobile-search-btn {
+          background: url("assets/close.svg") no-repeat center;
+          background-size: contain;
+        }
+        .search-input {
+          width: 80%;
+          grid-column: 1/-1;
+          margin: 2rem auto;
+          display: flex;
+          align-items: center;
+          padding: 1rem;
+          background-color: var(--color-bg-secondary);
+          border-radius: 0.8rem;
+          input {
+            color: var(--color-font-primary);
+          }
+        }
       }
     }
   }
@@ -151,8 +170,10 @@ button {
       align-items: center;
       padding: 0.6rem 0.3rem;
       background-color: var(--color-bg-secondary);
-      color: var(--color-font-primary);
       border-radius: 0.6rem;
+      input {
+        color: var(--color-font-primary);
+      }
       @media (max-width: 900px) {
         display: none;
       }
@@ -307,10 +328,10 @@ button {
   .note-details {
     padding: 5rem 3rem;
     width: 70%;
+    color: var(--color-font-primary);
     @media (max-width: 500px) {
       width: 100%;
     }
-    color: var(--color-font-primary);
     span {
       color: var(--color-font-secondary);
     }

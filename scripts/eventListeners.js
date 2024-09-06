@@ -1,4 +1,4 @@
-import {  themeToggler,notesButton,addNoteButton, addNote, addPinnedNote, deleteButton, notes, plusButton, burgerMenu, notesAside, noteDetailsPage, notesAsideList, mobileSearchButton} from "./elements";
+import {  themeToggler,notesButton,addNoteButton, addNote, addPinnedNote, deleteButton, notes, plusButton, burgerMenu, notesAside, noteDetailsPage, notesAsideList, mobileSearchButton, mobileNav} from "./elements";
 import {  addNotesHandler, chooseNote, deleteNote, showAddNotesPage, showNotesPage, themeTogglerHandler } from "./utils";
 
 
@@ -8,7 +8,7 @@ export const initListeners = () => {
       notesAside.classList.toggle('active');
     });
     mobileSearchButton.addEventListener("click",()=>{
-      mobileSearchButton.classList.toggle("active");
+      mobileNav.classList.toggle("active");
     })
     themeToggler.addEventListener("click", themeTogglerHandler);
     addNoteButton.addEventListener("click",showAddNotesPage);
