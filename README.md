@@ -54,7 +54,7 @@ This is a fully responsive **Notes App** built using HTML, Sass, and JavaScript.
 ### Live Version
 
 You can also access the live version of the app without cloning the repository:
-[Live Notes App](https://your-live-app-url.com)
+[Live Notes App](https://notes-app-dazai.netlify.app/)
 
 ## Features in Detail
 
