@@ -5,6 +5,7 @@ export const addNoteButton = document.querySelector(".add-note-btn");
 export const plusButton = document.querySelector(".plus-btn")
 export const addNotePage = document.querySelector(".add-note");
 export const NotesPage = document.querySelector(".notes");
+export const notesList = document.querySelector(".noteDetailsPage")
 export const titleInput = document.querySelector(".title-input");
 export const authorInput = document.querySelector(".author-input");
 export const noteInput = document.querySelector(".note-input");
@@ -17,3 +18,6 @@ export const noteDetailsPage = document.querySelector(".note-details");
 export const notes =()=> document.querySelectorAll(".note-main");
 export const burgerMenu = document.querySelector('.burger-menu');
 export const notesAside = document.querySelector('.notes-aside');
+export const notesAsideList = document.querySelector(".notes-list");
+export const mobileSearchButton = document.querySelector(".mobile-search-btn")
+export const mobileSearchIcon = document.querySelector(".mobile-search-icon")

@@ -1,4 +1,4 @@
-import { addNoteButton, addNotePage, App, authorInput, normalNotesContainer, noteDetailsPage, noteInput, notesButton, NotesPage, pinnedNotesContainer, titleInput } from "./elements";
+import { addNoteButton, addNotePage, App, authorInput, normalNotesContainer, noteDetailsPage, noteInput, notesAsideList, notesButton, NotesPage, pinnedNotesContainer, plusButton, titleInput } from "./elements";
 import { initTaskListeners } from "./eventListeners";
 
 export const fetchData = (key) =>{
@@ -19,6 +19,7 @@ export const showAddNotesPage =()=>{
     notesButton.classList.remove("active");
     addNoteButton.classList.add("active");
     addNotePage.classList.add("active");
+    plusButton.style.display = 'none';
     saveToDB("showingAddNotes" , addNoteButton.classList.contains("active"))
     saveToDB("showingNotes" , notesButton.classList.contains("active"))
 }
@@ -27,6 +28,11 @@ export const showNotesPage =()=>{
     addNotePage.classList.remove("active");
     notesButton.classList.add("active");
     NotesPage.classList.add("active");
+    plusButton.style.display = 'block';
+    notesAsideList.style.display = "block";
+    if (window.matchMedia("(max-width: 500px)").matches){
+                noteDetailsPage.style.display = "none";
+    }
     saveToDB("showingNotes" , notesButton.classList.contains("active"))
     saveToDB("showingAddNotes" , addNoteButton.classList.contains("active"))
 }
@@ -53,7 +59,6 @@ const addNote =(isPinned = false)=>{
 }
 const initNotes = () =>{
     const notes = fetchData("notes") || [];
-    console.log(notes)
     const normalNotes = notes.filter(note => note.isPinned === false)
     const pinnedNotes = notes.filter(note => note.isPinned === true) 
     normalNotesContainer.innerHTML = renderNotes(normalNotes);

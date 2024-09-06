@@ -1,4 +1,4 @@
-import {  themeToggler,notesButton,addNoteButton, addNote, addPinnedNote, deleteButton, notes, plusButton, burgerMenu, notesAside} from "./elements";
+import {  themeToggler,notesButton,addNoteButton, addNote, addPinnedNote, deleteButton, notes, plusButton, burgerMenu, notesAside, noteDetailsPage, notesAsideList, mobileSearchButton} from "./elements";
 import {  addNotesHandler, chooseNote, deleteNote, showAddNotesPage, showNotesPage, themeTogglerHandler } from "./utils";
 
 
@@ -7,6 +7,9 @@ export const initListeners = () => {
       burgerMenu.classList.toggle('active');
       notesAside.classList.toggle('active');
     });
+    mobileSearchButton.addEventListener("click",()=>{
+      mobileSearchButton.classList.toggle("active");
+    })
     themeToggler.addEventListener("click", themeTogglerHandler);
     addNoteButton.addEventListener("click",showAddNotesPage);
     plusButton.addEventListener("click",showAddNotesPage);
@@ -28,6 +31,11 @@ export const initTaskListeners = () => {
     })
     notes().forEach((note)=>{
         note.addEventListener("click",(e)=>{
+            if (window.matchMedia("(max-width: 500px)").matches){
+                 noteDetailsPage.style.display = "block";
+                notesAsideList.style.display = "none";
+            }
+            noteDetailsPage.classList.add("active")
             const noteId = parseInt(e.currentTarget.parentElement.id);
             chooseNote(e,noteId)
         })

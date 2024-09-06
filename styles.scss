@@ -52,74 +52,140 @@ button {
 // App Styles
 .app {
   position: relative;
+  display: flex;
   min-height: 100vh;
   width: 100%;
   background-color: var(--color-bg-primary);
-  display: flex;
-  // grid-template-columns: 1fr 4fr;
+  @media (max-width: 900px) {
+    display: flex;
+    flex-direction: column;
+  }
   .plus-btn {
     position: fixed;
     bottom: 3rem;
     right: 3rem;
+    @media (max-width: 500px) {
+      bottom: 1.5rem;
+      right: 1.5rem;
+    }
   }
-}
-.notes-aside {
-  width: 300px;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  border-right: 2px solid var(--color-bg-secondary);
-  .logo {
-    margin: 3rem 0;
-  }
-  .theme-toggler {
-    margin-left: auto;
-    content: "";
-    background: var(--icon-theme);
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 3rem;
-    height: 3rem;
-  }
-  .search-input {
-    margin: 2rem 0;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    padding: 0.6rem 0.3rem;
+  .mobile-nav {
+    display: none;
+    padding: 1.6rem 0.8rem;
     background-color: var(--color-bg-secondary);
-    color: var(--color-font-primary);
-    border-radius: 0.6rem;
     @media (max-width: 900px) {
-      display: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .burger-menu {
+        top: 15px;
+        left: 15px;
+        width: 30px;
+        height: 30px;
+        background: url("assets/burger.svg") no-repeat center;
+        background-size: contain;
+        z-index: 20;
+        cursor: pointer;
+      }
+      .burger-menu.active {
+        background: url("assets/close.svg") no-repeat center;
+        background-size: contain;
+      }
+      .mobile-search-btn {
+        top: 15px;
+        left: 15px;
+        width: 30px;
+        height: 30px;
+        background: url("assets/icon-search.svg") no-repeat center;
+        background-size: contain;
+        z-index: 20;
+        cursor: pointer;
+      }
+      .mobile-search-btn.active {
+        background: url("assets/close.svg") no-repeat center;
+        background-size: contain;
+      }
     }
   }
-  button {
-    width: 100%;
-    padding: 0.8rem;
-    margin-top: 1rem;
-    line-height: 1.7rem;
-    text-align: left;
-    color: var(--color-font-secondary);
-    transition: 0.3s ease;
-    &.active {
-      color: var(--color-font-primary);
-      border-left: 3px solid var(--color-light-orange);
+  .notes-aside {
+    width: 300px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-right: 2px solid var(--color-bg-secondary);
+    @media (max-width: 900px) {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      background-color: var(--color-bg-primary);
+      z-index: 10;
+      padding: 20px;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
     }
-    &:hover {
+    @media (max-width: 500px) {
+      width: 75%;
+    }
+    &.active {
+      transform: translateX(0);
+    }
+    .logo {
+      margin: 3rem 0;
+    }
+    .theme-toggler {
+      margin-left: auto;
+      content: "";
+      background: var(--icon-theme);
+      background-size: cover;
+      background-repeat: no-repeat;
+      width: 3rem;
+      height: 3rem;
+    }
+    .search-input {
+      margin: 2rem 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      padding: 0.6rem 0.3rem;
       background-color: var(--color-bg-secondary);
+      color: var(--color-font-primary);
+      border-radius: 0.6rem;
+      @media (max-width: 900px) {
+        display: none;
+      }
+    }
+    button {
+      width: 100%;
+      padding: 0.8rem;
+      margin-top: 1rem;
+      line-height: 1.7rem;
+      text-align: left;
+      color: var(--color-font-secondary);
+      transition: 0.3s ease;
+      &.active {
+        color: var(--color-font-primary);
+        border-left: 3px solid var(--color-light-orange);
+      }
+      &:hover {
+        background-color: var(--color-bg-secondary);
+      }
     }
   }
 }
+
 .add-note {
-  flex: 1;
-  padding: 20px; //
-  display: none;
-  height: 100%;
-  background-color: var(--color-bg-secondary);
   margin: auto 0;
-  padding: 10rem;
+  min-height: 100%;
+  flex: 1;
+  padding: 10rem 7rem;
+  background-color: var(--color-bg-secondary);
+  display: none;
+  &.active {
+    display: block;
+  }
   h1 {
     color: var(--color-font-primary);
   }
@@ -141,6 +207,9 @@ button {
       @media (max-width: 900px) {
         width: 85%;
       }
+      @media (max-width: 450px) {
+        width: 100%;
+      }
     }
     textarea {
       resize: none;
@@ -159,9 +228,11 @@ button {
       border-radius: 0.8rem;
       transition: 0.3s ease;
     }
-  }
-  &.active {
-    display: block;
+    @media (max-width: 450px) {
+      margin: 0 auto;
+      flex-direction: column;
+      max-width: fit-content;
+    }
   }
 }
 .notes {
@@ -173,6 +244,13 @@ button {
     width: 30%;
     padding: 2rem 0;
     border-right: 2px solid var(--color-bg-primary);
+    @media (max-width: 700px) {
+      width: 40%;
+    }
+    @media (max-width: 500px) {
+      display: flex;
+      width: 100%;
+    }
     h3 {
       text-align: center;
       width: 100%;
@@ -204,6 +282,10 @@ button {
         white-space: nowrap;
         font-size: 1.4rem;
         color: var(--color-font-secondary);
+        @media (max-width: 500px) {
+          max-width: 500px;
+          max-height: 400px;
+        }
       }
       &__footer {
         margin-top: -1rem;
@@ -217,11 +299,17 @@ button {
       &:hover {
         background-color: var(--color-bg-primary);
       }
+      &.active {
+        background-color: var(--color-bg-primary);
+      }
     }
   }
   .note-details {
     padding: 5rem 3rem;
     width: 70%;
+    @media (max-width: 500px) {
+      width: 100%;
+    }
     color: var(--color-font-primary);
     span {
       color: var(--color-font-secondary);
@@ -229,55 +317,5 @@ button {
   }
   &.active {
     display: flex;
-  }
-}
-/* Responsive styles */
-@media (max-width: 900px) {
-  .notes-aside {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 100%;
-    background-color: var(--color-bg-primary);
-    z-index: 10;
-    padding: 20px;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-  }
-
-  .notes-aside.active {
-    transform: translateX(0);
-  }
-
-  .burger-menu {
-    display: block;
-    position: fixed;
-    top: 15px;
-    left: 15px;
-    width: 30px;
-    height: 30px;
-    background: url("assets/burger.svg") no-repeat center;
-    background-size: contain;
-    z-index: 20;
-    cursor: pointer;
-  }
-
-  .burger-menu.active {
-    background: url("assets/close.svg") no-repeat center;
-    background-size: contain;
-  }
-
-  .app {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .notes {
-    padding-top: 60px;
-  }
-
-  .add-note {
-    padding-top: 60px;
   }
 }

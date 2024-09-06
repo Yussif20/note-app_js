@@ -23,7 +23,9 @@ initTaskListeners();
 
 //TODO add the plus button ✅
 
-//TODO make the website responsive
+//TODO make the website responsive ✅
+
+//TODO show the search bar when the search icon is clicked
 
 //TODO add the search functionality
 
