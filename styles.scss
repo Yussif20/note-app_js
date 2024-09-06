@@ -55,16 +55,17 @@ button {
   min-height: 100vh;
   width: 100%;
   background-color: var(--color-bg-primary);
-  display: grid;
-  grid-template-columns: 1fr 4fr;
+  display: flex;
+  // grid-template-columns: 1fr 4fr;
   .plus-btn {
-    position: absolute;
+    position: fixed;
     bottom: 3rem;
     right: 3rem;
   }
 }
 .notes-aside {
-  padding: 3.4rem 1.6rem;
+  width: 300px;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -73,6 +74,7 @@ button {
     margin: 3rem 0;
   }
   .theme-toggler {
+    margin-left: auto;
     content: "";
     background: var(--icon-theme);
     background-size: cover;
@@ -89,6 +91,9 @@ button {
     background-color: var(--color-bg-secondary);
     color: var(--color-font-primary);
     border-radius: 0.6rem;
+    @media (max-width: 900px) {
+      display: none;
+    }
   }
   button {
     width: 100%;
@@ -108,6 +113,8 @@ button {
   }
 }
 .add-note {
+  flex: 1;
+  padding: 20px; //
   display: none;
   height: 100%;
   background-color: var(--color-bg-secondary);
@@ -131,6 +138,9 @@ button {
       padding: 1.2rem;
       background-color: var(--color-bg-primary);
       border-radius: 0.6rem;
+      @media (max-width: 900px) {
+        width: 85%;
+      }
     }
     textarea {
       resize: none;
@@ -155,6 +165,7 @@ button {
   }
 }
 .notes {
+  flex: 1;
   display: none;
   background-color: var(--color-bg-secondary);
   .notes-list {
@@ -186,6 +197,11 @@ button {
         margin-bottom: -0.5rem;
       }
       p {
+        max-width: 250px;
+        max-height: 50px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
         font-size: 1.4rem;
         color: var(--color-font-secondary);
       }
@@ -213,5 +229,55 @@ button {
   }
   &.active {
     display: flex;
+  }
+}
+/* Responsive styles */
+@media (max-width: 900px) {
+  .notes-aside {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background-color: var(--color-bg-primary);
+    z-index: 10;
+    padding: 20px;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .notes-aside.active {
+    transform: translateX(0);
+  }
+
+  .burger-menu {
+    display: block;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    width: 30px;
+    height: 30px;
+    background: url("assets/burger.svg") no-repeat center;
+    background-size: contain;
+    z-index: 20;
+    cursor: pointer;
+  }
+
+  .burger-menu.active {
+    background: url("assets/close.svg") no-repeat center;
+    background-size: contain;
+  }
+
+  .app {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .notes {
+    padding-top: 60px;
+  }
+
+  .add-note {
+    padding-top: 60px;
   }
 }

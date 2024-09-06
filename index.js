@@ -4,7 +4,6 @@ import { initDataOnStartup } from "./scripts/utils";
 initDataOnStartup();
 initListeners();
 initTaskListeners();
-// localStorage.clear()
 
 
 

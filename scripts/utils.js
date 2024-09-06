@@ -92,7 +92,7 @@ const renderNotes = (notes) => {
 const renderNoteDetails = (note) =>{
     let noteEl = `
           <h2>${note.title}</h2>
-          <span>${note.date}</span>
+          <span>${note.date} / by ${note.author}</span>
           <p>
            ${note.noteInfo}
           </p>
